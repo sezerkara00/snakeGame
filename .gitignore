@@ -1,4 +1,3 @@
 __pycache__/
 *.pyc
-.DS_Store
-high_score.txt 
+.DS_Store 
