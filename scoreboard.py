@@ -5,17 +5,17 @@ class Scoreboard(Turtle):
     def __init__(self):
         super().__init__()
         self.score = 0
-        # Dosya yolunu snake_game klasörüne göre ayarla
         self.file_path = os.path.join(os.path.dirname(__file__), "high_score.txt")
         
         # Dosyadan high score'u oku
         try:
-            with open(self.file_path, "r") as file:
-                self.high_score = int(file.read())
-        except FileNotFoundError:
+            with open(self.file_path, "r", encoding="utf-8") as file:
+                content = file.read().strip()  # Boşlukları temizle
+                self.high_score = int(content) if content else 0
+        except (FileNotFoundError, ValueError):
             self.high_score = 0
-            # İlk çalıştırmada dosyayı oluştur
-            with open(self.file_path, "w") as file:
+            # Dosyayı düzgün formatta oluştur
+            with open(self.file_path, "w", encoding="utf-8") as file:
                 file.write("0")
                 
         self.color("white")
